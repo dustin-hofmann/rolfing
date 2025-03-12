@@ -1,0 +1,71 @@
+---
+interface PriceItem {
+  title: string;
+  duration: string;
+  description: string;
+  price: string;
+  discount?: string;
+}
+
+const prices: PriceItem[] = [
+  {
+    title: "Rolfing® Einzelsitzung",
+    duration: "60 - 75 Minuten",
+    description: "Eine individuelle Rolfing-Sitzung, die auf Ihre spezifischen Bedürfnisse und Ziele abgestimmt ist. Ideal für Erst- und Folgebehandlungen.",
+    price: "120 €"
+  },
+  {
+    title: "Rolfing® 10er-Serie",
+    duration: "10 Sitzungen à 60 - 75 Minuten",
+    description: "Die klassische Rolfing-Serie aus 10 aufeinander aufbauenden Sitzungen. Für eine umfassende Neuorganisation des Körpers und langfristige Ergebnisse.",
+    price: "1.080 €",
+    discount: "(10% Rabatt gegenüber Einzelsitzungen)"
+  }
+];
+---
+
+<section id="holistic-packages" class="py-5 bg-white fade-in">
+  <div class="container">
+    <div class="row text-center mb-5">
+      <div class="col-lg-8 mx-auto">
+        <h2 class="display-5 fw-bold text-secondary-custom mb-3">Preise & Leistungen</h2>
+        <p class="lead">Transparente Preisgestaltung für Ihre Rolfing-Behandlung</p>
+      </div>
+    </div>
+    
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        {prices.map((price) => (
+          <div class="card shadow-sm mb-4">
+            <div class="card-body p-4">
+              <div class="row align-items-center">
+                <div class="col-md-8">
+                  <h3 class="h4 text-secondary-custom mb-2">{price.title}</h3>
+                  <p class="mb-2"><i class="bi bi-clock text-primary-custom me-2"></i> {price.duration}</p>
+                  <p class="mb-0">{price.description}</p>
+                </div>
+                <div class="col-md-4 text-md-end mt-3 mt-md-0">
+                  <span class="d-block h2 mb-0 text-secondary-custom">{price.price}</span>
+                  {price.discount && <small class="text-muted">{price.discount}</small>}
+                  <a href="#contact" class="btn btn-primary-custom mt-2">{price.title.includes("10er") ? "Anfragen" : "Termin buchen"}</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+        
+        <div class="alert alert-light border-start border-primary-custom border-3" role="alert">
+          <div class="d-flex">
+            <div class="me-3 fs-4 text-primary-custom">
+              <i class="bi bi-info-circle"></i>
+            </div>
+            <div>
+              <h4 class="alert-heading h5 mb-1">Hinweis zur Kostenübernahme</h4>
+              <p class="mb-0">Eine Kostenübernahme durch gesetzliche Krankenkassen ist leider nicht möglich. Einige private Krankenkassen übernehmen jedoch unter Umständen einen Teil der Kosten. Bitte erkundigen Sie sich bei Ihrer Versicherung.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

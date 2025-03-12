@@ -1,5 +1,5 @@
----
 // src/layouts/MainLayout.astro
+---
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 
@@ -159,8 +159,8 @@ const { title, description = "Rolfing Therapie von Fransisca Satyani Indriastant
     }
   </style>
 </head>
-<body>
-  <Header />
+<body data-bs-spy="scroll" data-bs-target="#navbar">
+  <Header isHomePage={Astro.url.pathname === '/' || Astro.url.pathname === '/rolfing/'} />
   
   <main>
     <slot />
@@ -180,9 +180,9 @@ const { title, description = "Rolfing Therapie von Fransisca Satyani Indriastant
       
       links.forEach(link => {
         const href = link.getAttribute('href');
-        if (currentPath.includes(href) && href !== '/index') {
+        if (currentPath.includes(href) && href !== '/') {
           link.style.fontWeight = 'bold';
-        } else if (href === '/index' && (currentPath === '/' || currentPath === '/index')) {
+        } else if (href === '/' && (currentPath === '/' || currentPath === '/index')) {
           link.style.fontWeight = 'bold';
         }
       });
@@ -228,6 +228,25 @@ const { title, description = "Rolfing Therapie von Fransisca Satyani Indriastant
       
       window.addEventListener('scroll', checkScroll);
       window.addEventListener('load', checkScroll);
+      
+      // Formular-Absendung handhaben
+      const contactForm = document.getElementById('contactForm');
+      if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+          e.preventDefault();
+          
+          // Get form data
+          const formData = new FormData(contactForm);
+          const formDataObj = Object.fromEntries(formData.entries());
+          
+          // Hier würden Sie normalerweise die Daten an einen Server senden
+          // Für Demonstrationszwecke zeigen wir nur eine Erfolgsmeldung
+          alert('Vielen Dank für Ihre Nachricht! Ich werde mich so schnell wie möglich bei Ihnen melden.');
+          
+          // Formular zurücksetzen
+          contactForm.reset();
+        });
+      }
     });
   </script>
 </body>

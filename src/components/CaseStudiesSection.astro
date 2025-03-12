@@ -1,0 +1,102 @@
+---
+interface CaseStudy {
+  name: string;
+  occupation: string;
+  problem: string;
+  approach: string[];
+  results: string[];
+  testimonial: string;
+}
+
+const caseStudies: CaseStudy[] = [
+  {
+    name: "Maria K., 42",
+    occupation: "Bürokauffrau",
+    problem: "Chronische Nackenschmerzen & Hautunreinheiten",
+    approach: [
+      "5 Rolfing®-Sitzungen mit Fokus auf oberen Rücken und Nacken",
+      "3 spezialisierte Gesichtsbehandlungen",
+      "Persönliche Hautpflege- und Haltungsempfehlungen"
+    ],
+    results: [
+      "Nackenschmerzen signifikant reduziert nach der dritten Rolfing-Sitzung",
+      "Verbesserte Haltung durch gezielte Übungen",
+      "Hautbild deutlich klarer und strahlender",
+      "Gesamtes Stresslevel reduziert"
+    ],
+    testimonial: "Die Kombination aus struktureller Körperarbeit und Hautpflege hat nicht nur meine Schmerzen gelindert, sondern auch mein Selbstbewusstsein gesteigert. Ich fühle mich wie neugeboren!"
+  },
+  {
+    name: "Thomas G., 38",
+    occupation: "Sportler",
+    problem: "Sportbedingte Verspannungen & eingeschränkte Beweglichkeit",
+    approach: [
+      "10er-Serie Rolfing® für strukturelle Integration",
+      "Regelmäßige Thai-Massage zur Entspannung der Muskulatur",
+      "Gezielte Atemübungen und Bewegungscoaching"
+    ],
+    results: [
+      "Deutlich verbesserte Beweglichkeit in Hüfte und Schultern",
+      "Persönliche Bestleistungen im Wettkampf",
+      "Schnellere Regeneration nach intensivem Training",
+      "Verbesserte Körperwahrnehmung und optimierte Technik"
+    ],
+    testimonial: "Durch die Kombination von Rolfing und Thai-Massage konnte ich meine sportliche Leistung auf ein neues Level heben. Nicht nur die Schmerzen sind weg, ich bewege mich auch effizienter und kraftvoller."
+  }
+];
+---
+
+<section class="py-5 bg-light fade-in">
+  <div class="container">
+    <div class="row text-center mb-5">
+      <div class="col-lg-8 mx-auto">
+        <h2 class="display-5 fw-bold text-secondary-custom mb-3">Erfolgsgeschichten</h2>
+        <p class="lead">Konkrete Ergebnisse unseres ganzheitlichen Behandlungsansatzes</p>
+      </div>
+    </div>
+    
+    <div class="row g-4">
+      {caseStudies.map((study) => (
+        <div class="col-md-6">
+          <div class="card shadow-sm h-100">
+            <div class="card-body">
+              <div class="d-flex align-items-center mb-3">
+                <img src="/images/placeholder-avatar.png" alt={study.name} class="rounded-circle me-3" width="80" height="80">
+                <div>
+                  <h3 class="h5 mb-1 text-secondary-custom">{study.name} - {study.occupation}</h3>
+                  <p class="mb-0"><small class="text-muted">Problematik: {study.problem}</small></p>
+                </div>
+              </div>
+              
+              <div class="mb-3">
+                <div class="d-flex justify-content-between mb-2">
+                  <span class="fw-bold">Behandlungsansatz:</span>
+                </div>
+                <ul>
+                  {study.approach.map((item) => (
+                    <li>{item}</li>
+                  ))}
+                </ul>
+              </div>
+              
+              <div class="mb-3">
+                <div class="d-flex justify-content-between mb-2">
+                  <span class="fw-bold">Ergebnisse:</span>
+                </div>
+                <ul>
+                  {study.results.map((item) => (
+                    <li>{item}</li>
+                  ))}
+                </ul>
+              </div>
+              
+              <div class="fst-italic border-start border-primary-custom ps-3 mt-4">
+                "{study.testimonial}"
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

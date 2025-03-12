@@ -1,0 +1,66 @@
+---
+interface BenefitItem {
+  title: string;
+  text: string;
+}
+
+const benefits: BenefitItem[] = [
+  {
+    title: "Schmerzen reduzieren",
+    text: "Chronischen Schmerzen im Rücken, Nacken und Schulterbereich vorbeugen."
+  },
+  {
+    title: "Körperbewusstsein verbessern",
+    text: "Körperbewusstsein, Stressabbau und sportliche Leistungen unterstützen."
+  },
+  {
+    title: "Beweglichkeit erhöhen",
+    text: "Beweglichkeit und Körperhaltung verbessern."
+  },
+  {
+    title: "Atmung optimieren",
+    text: "Atmung, Verdauung und Regenerationsfähigkeit optimieren."
+  },
+  {
+    title: "Wohlbefinden steigern",
+    text: "Zu mehr Wohlbefinden und Selbstbewusstsein führen."
+  },
+  {
+    title: "Leistungsfähigkeit steigern",
+    text: "Die körperliche und mentale Leistungsfähigkeit im Alltag und im Sport verbessern."
+  },
+  {
+    title: "Ganzheitlicher Ansatz",
+    text: "Als Ergänzung zu Rolfing biete ich auch Thai-Massage und Gesichtspflege für ein vollständiges Wohlbefinden an."
+  }
+];
+---
+
+<section id="benefits" class="py-5 bg-light fade-in">
+  <div class="container">
+    <div class="row text-center mb-5">
+      <div class="col-lg-8 mx-auto">
+        <h2 class="display-5 fw-bold text-secondary-custom mb-3">Vorteile der Rolfing®-Methode</h2>
+        <p class="lead">Können den Klientinnen ein bewussteres Lebensgefühl geben und körperliche Einschränkungen reduzieren. Rolfing kann:</p>
+      </div>
+    </div>
+    
+    <div class="row g-4">
+      {benefits.map((benefit) => (
+        <div class="col-md-6 col-lg-4">
+          <div class="card h-100 shadow-sm benefit-item">
+            <div class="card-body">
+              <div class="d-flex align-items-center mb-3">
+                <div class="me-3">
+                  <i class="bi bi-arrow-right-circle-fill card-icon"></i>
+                </div>
+                <h3 class="card-title h5 mb-0 text-secondary-custom">{benefit.title}</h3>
+              </div>
+              <p class="card-text">{benefit.text}</p>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

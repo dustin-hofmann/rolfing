@@ -1,0 +1,247 @@
+// src/components/LegalContent.astro
+---
+interface Props {
+  title: string;
+  contentType: 'agb' | 'datenschutz' | 'impressum';
+}
+
+const { title, contentType } = Astro.props;
+---
+
+<section class="py-5">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="legal-content">
+          <h1 class="display-5 fw-bold text-secondary-custom mb-4">{title}</h1>
+          
+          {contentType === 'agb' && (
+            <>
+              <p class="fw-bold">
+                Fransisca Satyani Indriastanti<br>
+                Rolfing® Therapie<br>
+                Musterstraße 123<br>
+                12345 Musterstadt
+              </p>
+              
+              <h2>1. Geltungsbereich</h2>
+              <p>
+                Diese Allgemeinen Geschäftsbedingungen (AGB) gelten für alle Verträge über Dienstleistungen im Bereich Rolfing® Therapie, die zwischen Fransisca Satyani Indriastanti (nachfolgend "Therapeutin" genannt) und ihren Klienten (nachfolgend "Klient" genannt) geschlossen werden.
+              </p>
+              <p>
+                Abweichende Vereinbarungen bedürfen der Schriftform und sind nur wirksam, wenn sie von der Therapeutin schriftlich bestätigt wurden.
+              </p>
+              
+              <h2>2. Vertragsschluss</h2>
+              <p>
+                Ein Vertrag kommt zustande, wenn der Klient einen Termin für eine Rolfing®-Sitzung vereinbart und die Therapeutin diesen Termin bestätigt hat. Die Terminvereinbarung kann persönlich, telefonisch, per E-Mail oder über das Kontaktformular auf der Website erfolgen.
+              </p>
+              <p>
+                Mit der Vereinbarung eines Termins erkennt der Klient diese AGB an.
+              </p>
+              
+              <h2>3. Leistungsumfang</h2>
+              <p>
+                Der Umfang der zu erbringenden Leistungen ergibt sich aus der Beschreibung auf der Website, dem Behandlungsvertrag und/oder den individuellen Vereinbarungen zwischen Therapeutin und Klient.
+              </p>
+              <p>
+                Die Therapeutin erbringt ihre Dienstleistungen nach bestem Wissen und Gewissen und entsprechend den anerkannten Regeln und Standards der Rolfing®-Methode.
+              </p>
+              <p>
+                Die Therapeutin verpflichtet sich, den Klienten über den Umfang der Behandlung, die angewandten Methoden sowie mögliche Risiken und Nebenwirkungen zu informieren.
+              </p>
+              
+              <h2>4. Hinweise zur Behandlung</h2>
+              <p>
+                Rolfing® ist eine Form der manuellen Therapie, die auf die Verbesserung der Körperstruktur und -funktion abzielt. Die Behandlung erfolgt in der Regel in Unterwäsche, um die Körperstrukturen besser beurteilen zu können. Auf Wunsch des Klienten kann die Behandlung auch in leichter, körpernaher Kleidung erfolgen.
+              </p>
+              <p>
+                Die Therapeutin weist darauf hin, dass Rolfing® keine medizinische Behandlung im Sinne einer Heilbehandlung darstellt und nicht den Besuch bei einem Arzt oder Heilpraktiker ersetzt. Es werden keine Diagnosen gestellt, keine Heilversprechen gegeben und keine Medikamente verordnet.
+              </p>
+              <p>
+                Der Klient verpflichtet sich, die Therapeutin über bestehende gesundheitliche Einschränkungen, Vorerkrankungen, Medikamenteneinnahme sowie andere therapeutische Behandlungen zu informieren. Dies gilt insbesondere für Schwangerschaft, Herz-Kreislauf-Erkrankungen, Infektionskrankheiten, Tumorerkrankungen, psychische Erkrankungen und Operationen.
+              </p>
+              
+              <h2>5. Preise und Zahlungsbedingungen</h2>
+              <p>
+                Die Preise für die angebotenen Leistungen ergeben sich aus der aktuellen Preisliste, die auf der Website einsehbar ist oder in der Praxis ausliegt.
+              </p>
+              <p>
+                Die vereinbarten Honorare sind nach jeder Sitzung in bar oder per EC-Karte zu entrichten, sofern keine andere schriftliche Vereinbarung getroffen wurde. Bei Paketen (z.B. 10er-Serie) ist die Zahlung des Gesamtbetrags nach der ersten Sitzung fällig, sofern keine Ratenzahlung vereinbart wurde.
+              </p>
+              <p>
+                Die angegebenen Preise verstehen sich inklusive der gesetzlichen Mehrwertsteuer.
+              </p>
+              <p>
+                Eine Rechnung wird auf Wunsch ausgestellt.
+              </p>
+              
+              <h2>6. Kostenerstattung durch Dritte</h2>
+              <p>
+                Die Therapeutin weist darauf hin, dass Rolfing®-Behandlungen in der Regel nicht von gesetzlichen Krankenkassen übernommen werden. Einige private Krankenversicherungen erstatten unter Umständen die Kosten teilweise oder vollständig.
+              </p>
+              <p>
+                Die Klärung der Kostenübernahme mit der Krankenkasse oder anderen Kostenträgern obliegt dem Klienten. Die Zahlungspflicht des Klienten besteht unabhängig von der Erstattungsfähigkeit der Leistungen durch Dritte.
+              </p>
+              
+              <h2>7. Terminvereinbarung und Absageregelung</h2>
+              <p>
+                Vereinbarte Termine sind verbindlich.
+              </p>
+              <p>
+                Kann der Klient einen vereinbarten Termin nicht wahrnehmen, so hat er dies der Therapeutin so früh wie möglich, spätestens jedoch 24 Stunden vor dem vereinbarten Termin mitzuteilen.
+              </p>
+              <p>
+                Bei Absagen innerhalb von weniger als 24 Stunden vor dem vereinbarten Termin oder bei Nichterscheinen ohne Absage kann die Therapeutin eine Ausfallgebühr in Höhe von 50% des vereinbarten Honorars in Rechnung stellen, es sei denn, der Klient kann nachweisen, dass der Therapeutin kein oder ein geringerer Schaden entstanden ist.
+              </p>
+              <p>
+                In Fällen höherer Gewalt (z.B. plötzliche Erkrankung, Unfall, Todesfall in der Familie) entfällt die Ausfallgebühr, wenn der Klient die Umstände glaubhaft macht.
+              </p>
+              
+              <h2>8. Haftung</h2>
+              <p>
+                Die Therapeutin haftet für Schäden, die durch die Behandlung entstehen, nur bei Vorsatz oder grober Fahrlässigkeit. Die Haftung für leichte Fahrlässigkeit ist ausgeschlossen, sofern keine wesentlichen Vertragspflichten, Schäden aus der Verletzung des Lebens, des Körpers oder der Gesundheit oder Garantien betroffen sind oder Ansprüche nach dem Produkthaftungsgesetz berührt sind.
+              </p>
+              <p>
+                Der Klient nimmt zur Kenntnis, dass in seltenen Fällen während oder nach der Behandlung vorübergehende Reaktionen wie Muskelkater, leichte Schmerzen oder emotionale Reaktionen auftreten können. Diese Reaktionen sind in der Regel Teil des Heilungsprozesses und klingen nach kurzer Zeit ab.
+              </p>
+              
+              <h2>9. Schweigepflicht und Datenschutz</h2>
+              <p>
+                Die Therapeutin ist verpflichtet, über alle im Rahmen der Tätigkeit bekannt gewordenen Informationen des Klienten Stillschweigen zu bewahren. Dies gilt auch über das Ende der Behandlung hinaus.
+              </p>
+              <p>
+                Die Erhebung, Verarbeitung und Nutzung der personenbezogenen Daten des Klienten erfolgt unter Beachtung der geltenden datenschutzrechtlichen Bestimmungen. Nähere Informationen sind der Datenschutzerklärung zu entnehmen, die auf der Website einsehbar ist.
+              </p>
+              
+              <h2>10. Aufbewahrung persönlicher Gegenstände</h2>
+              <p>
+                Für die Beschädigung oder den Verlust persönlicher Gegenstände, die der Klient in die Praxisräume mitbringt, übernimmt die Therapeutin keine Haftung, es sei denn, der Schaden beruht auf einer vorsätzlichen oder grob fahrlässigen Pflichtverletzung.
+              </p>
+              
+              <h2>11. Gutscheine</h2>
+              <p>
+                Von der Therapeutin ausgestellte Geschenkgutscheine sind übertragbar und können nicht in bar ausgezahlt werden. Sie sind ab Ausstellungsdatum drei Jahre gültig, sofern keine andere Regelung auf dem Gutschein vermerkt ist.
+              </p>
+              
+              <h2>12. Gerichtsstand und anwendbares Recht</h2>
+              <p>
+                Für Verträge zwischen der Therapeutin und dem Klienten gilt ausschließlich deutsches Recht.
+              </p>
+              <p>
+                Soweit gesetzlich zulässig, wird als Gerichtsstand der Sitz der Therapeutin vereinbart.
+              </p>
+              
+              <h2>13. Salvatorische Klausel</h2>
+              <p>
+                Sollten einzelne Bestimmungen dieser AGB unwirksam oder undurchführbar sein oder nach Vertragsschluss unwirksam oder undurchführbar werden, bleibt davon die Wirksamkeit der AGB im Übrigen unberührt. An die Stelle der unwirksamen oder undurchführbaren Bestimmung soll diejenige wirksame und durchführbare Regelung treten, deren Wirkungen der wirtschaftlichen Zielsetzung am nächsten kommen, die die Vertragsparteien mit der unwirksamen bzw. undurchführbaren Bestimmung verfolgt haben.
+              </p>
+            </>
+          )}
+          
+          {contentType === 'datenschutz' && (
+            <>
+              <p>
+                Wir freuen uns über Ihr Interesse an unserer Website. Der Schutz Ihrer Privatsphäre ist für uns sehr wichtig. Nachfolgend informieren wir Sie ausführlich über den Umgang mit Ihren Daten.
+              </p>
+              
+              <h2>1. Verantwortliche Stelle</h2>
+              <p>
+                Verantwortliche Stelle im Sinne der Datenschutzgesetze ist:<br>
+                Fransisca Satyani Indriastanti<br>
+                Rolfing® Therapie<br>
+                Musterstraße 123<br>
+                12345 Musterstadt<br>
+                Telefon: +49 123 456789<br>
+                E-Mail: info@rolfing-indriastanti.de
+              </p>
+              
+              <h2>2. Grundsätzliche Angaben zur Datenverarbeitung</h2>
+              <p>
+                Wir verarbeiten personenbezogene Daten unserer Nutzer grundsätzlich nur, soweit dies zur Bereitstellung einer funktionsfähigen Website sowie unserer Inhalte und Leistungen erforderlich ist. Die Verarbeitung personenbezogener Daten unserer Nutzer erfolgt regelmäßig nur nach Einwilligung des Nutzers. Eine Ausnahme gilt in solchen Fällen, in denen eine vorherige Einholung einer Einwilligung aus tatsächlichen Gründen nicht möglich ist und die Verarbeitung der Daten durch gesetzliche Vorschriften gestattet ist.
+              </p>
+              
+              <!-- Weitere Abschnitte der Datenschutzerklärung -->
+              <h2>3. Rechtsgrundlage für die Verarbeitung personenbezogener Daten</h2>
+              <p>
+                Soweit wir für Verarbeitungsvorgänge personenbezogener Daten eine Einwilligung der betroffenen Person einholen, dient Art. 6 Abs. 1 lit. a EU-Datenschutzgrundverordnung (DSGVO) als Rechtsgrundlage.<br>
+                Bei der Verarbeitung von personenbezogenen Daten, die zur Erfüllung eines Vertrages, dessen Vertragspartei die betroffene Person ist, erforderlich ist, dient Art. 6 Abs. 1 lit. b DSGVO als Rechtsgrundlage. Dies gilt auch für Verarbeitungsvorgänge, die zur Durchführung vorvertraglicher Maßnahmen erforderlich sind.<br>
+                Soweit eine Verarbeitung personenbezogener Daten zur Erfüllung einer rechtlichen Verpflichtung erforderlich ist, der unser Unternehmen unterliegt, dient Art. 6 Abs. 1 lit. c DSGVO als Rechtsgrundlage.
+              </p>
+              
+              <h2>4. Datenlöschung und Speicherdauer</h2>
+              <p>
+                Die personenbezogenen Daten der betroffenen Person werden gelöscht oder gesperrt, sobald der Zweck der Speicherung entfällt. Eine Speicherung kann darüber hinaus erfolgen, wenn dies durch den europäischen oder nationalen Gesetzgeber in unionsrechtlichen Verordnungen, Gesetzen oder sonstigen Vorschriften, denen der Verantwortliche unterliegt, vorgesehen wurde. Eine Sperrung oder Löschung der Daten erfolgt auch dann, wenn eine durch die genannten Normen vorgeschriebene Speicherfrist abläuft, es sei denn, dass eine Erforderlichkeit zur weiteren Speicherung der Daten für einen Vertragsabschluss oder eine Vertragserfüllung besteht.
+              </p>
+              
+              <!-- Weitere Abschnitte zur Datenverarbeitung, Cookies, Rechte der Betroffenen usw. -->
+            </>
+          )}
+          
+          {contentType === 'impressum' && (
+            <>
+              <h2>Angaben gemäß § 5 TMG</h2>
+              <p>
+                Fransisca Satyani Indriastanti<br>
+                Rolfing® Therapie<br>
+                Musterstraße 123<br>
+                12345 Musterstadt
+              </p>
+              
+              <h2>Kontakt</h2>
+              <p>
+                Telefon: +49 123 456789<br>
+                E-Mail: info@rolfing-indriastanti.de
+              </p>
+              
+              <h2>Berufsbezeichnung und berufsrechtliche Regelungen</h2>
+              <p>
+                Berufsbezeichnung: Zertifizierte Rolfing®-Therapeutin<br>
+                Zertifiziert durch: European Rolfing® Association<br>
+                Die Berufsbezeichnung "Rolfing®" ist markenrechtlich geschützt und darf nur von zertifizierten Rolfern verwendet werden.
+              </p>
+              
+              <h2>Umsatzsteuer-ID</h2>
+              <p>
+                Umsatzsteuer-Identifikationsnummer gemäß § 27a Umsatzsteuergesetz:<br>
+                DE123456789
+              </p>
+              
+              <h2>Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV</h2>
+              <p>
+                Fransisca Satyani Indriastanti<br>
+                Musterstraße 123<br>
+                12345 Musterstadt
+              </p>
+              
+              <h2>Bildrechte</h2>
+              <p>
+                Die auf dieser Website verwendeten Bilder und Grafiken sind urheberrechtlich geschützt. Die Bildrechte liegen, soweit nicht anders angegeben, bei Fransisca Satyani Indriastanti oder wurden mit der Genehmigung der entsprechenden Rechteinhaber verwendet.
+              </p>
+              
+              <!-- Weitere Abschnitte zum Haftungsausschluss usw. -->
+              <h2>Haftungsausschluss</h2>
+              
+              <h3>Haftung für Inhalte</h3>
+              <p>
+                Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen.
+              </p>
+              <p>
+                Verpflichtungen zur Entfernung oder Sperrung der Nutzung von Informationen nach den allgemeinen Gesetzen bleiben hiervon unberührt. Eine diesbezügliche Haftung ist jedoch erst ab dem Zeitpunkt der Kenntnis einer konkreten Rechtsverletzung möglich. Bei Bekanntwerden von entsprechenden Rechtsverletzungen werden wir diese Inhalte umgehend entfernen.
+              </p>
+              
+              <h3>Haftung für Links</h3>
+              <p>
+                Unser Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich. Die verlinkten Seiten wurden zum Zeitpunkt der Verlinkung auf mögliche Rechtsverstöße überprüft. Rechtswidrige Inhalte waren zum Zeitpunkt der Verlinkung nicht erkennbar.
+              </p>
+            </>
+          )}
+          
+          <p class="mt-5 text-muted">
+            <small>Stand: März 2025</small>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
