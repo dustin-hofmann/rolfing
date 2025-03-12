@@ -8,6 +8,9 @@ on:
   # Erlaubt manuelle Ausführung vom Actions-Tab
   workflow_dispatch:
 
+# Hinweis für zukünftige Benutzer: Ab dem 30. Januar 2025 ist v4 der Artifact Actions verpflichtend.
+# Diese Konfiguration verwendet bereits die entsprechenden v4-Versionen.
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -27,7 +30,7 @@ jobs:
         run: npm run build
         
       - name: Upload Pages Artifact
-        uses: actions/upload-pages-artifact@v2
+        uses: actions/upload-pages-artifact@v4
         with:
           path: "./dist"
           
