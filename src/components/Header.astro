@@ -1,0 +1,15 @@
+---
+// src/components/Header.astro
+import SharedNavBar from './SharedNavBar.astro';
+import MainNavBar from './MainNavBar.astro';
+
+interface Props {
+  isHomePage?: boolean;
+}
+
+const { isHomePage = false } = Astro.props;
+const currentPath = Astro.url.pathname;
+---
+
+<SharedNavBar />
+<MainNavBar isHomePage={isHomePage} />

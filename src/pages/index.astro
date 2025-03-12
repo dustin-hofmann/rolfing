@@ -1,11 +1,25 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+// src/pages/index.astro
+import MainLayout from '../layouts/MainLayout.astro';
 ---
 
-<Layout>
-	<Welcome />
-</Layout>
+<MainLayout title="Rolfing Therapie - Fransisca Satyani Indriastanti">
+  <!-- Hero Section -->
+  <section id="home" class="hero bg-primary-custom">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-6 mb-4 mb-lg-0">
+          <h1 class="display-4 fw-bold mb-3">Die Rolfing®-Methode</h1>
+          <p class="lead mb-4">Den Körper ins Lot bringen mit der Rolfing®-Methode. Rolfing® kann Ihr Körperbewusstsein verbessern, für mehr Beweglichkeit sorgen und Ihr muskuläres sowie skelettales System stabilisieren – um Sie so wieder in eine gesunde Körperhaltung zu bringen.</p>
+          <a href="#contact" class="btn btn-primary-custom btn-lg">Termin vereinbaren</a>
+        </div>
+        <div class="col-lg-6">
+          <img src="https://rolfingverband.de/wp-content/uploads/2023/04/rolfing-praxis.jpg" alt="Rolfing Therapie" class="img-fluid rounded shadow">
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Weitere Sektionen (Quote, Benefits, etc.) -->
+  <!-- Kopieren Sie den Inhalt aus Ihrer index.html hier rein -->
+</MainLayout>

@@ -1,0 +1,44 @@
+---
+// src/components/MainNavBar.astro
+interface Props {
+  isHomePage?: boolean;
+}
+
+const { isHomePage = false } = Astro.props;
+---
+
+<nav id="navbar" class={`navbar navbar-expand-lg navbar-light bg-white ${isHomePage ? 'fixed-top' : 'sticky-top'}`}>
+  <div class="container">
+    <a class="navbar-brand d-flex align-items-center" href="/rolfing">
+      <img src="/images/logo.png" alt="Rolfing Logo" class="me-2">
+      <span class="fw-bold text-secondary-custom">Rolfing Therapie</span>
+    </a>
+    
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link" href={isHomePage ? "#home" : "/rolfing#home"}>Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href={isHomePage ? "#benefits" : "/rolfing#benefits"}>Vorteile</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href={isHomePage ? "#method" : "/rolfing#method"}>Die Methode</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href={isHomePage ? "#holistic-packages" : "/rolfing#holistic-packages"}>Pakete</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href={isHomePage ? "#about" : "/rolfing#about"}>Über Mich</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href={isHomePage ? "#contact" : "/rolfing#contact"}>Kontakt</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
