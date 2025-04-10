@@ -5,6 +5,8 @@ interface FAQItem {
   showDefault?: boolean;
 }
 
+// Diese Daten werden sowohl für die Anzeige auf der Website als auch für das strukturierte FAQ-Schema für Google verwendet
+
 const faqs: FAQItem[] = [
   {
     question: "Wie läuft eine Rolfing-Sitzung ab?",
@@ -60,4 +62,23 @@ const faqs: FAQItem[] = [
       </div>
     </div>
   </div>
+  
+  <!-- Structured FAQ Schema for Google -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {faqs.map((faq) => `
+      {
+        "@type": "Question",
+        "name": "${faq.question}",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "${faq.answer}"
+        }
+      }`).join(',')}
+    ]
+  }
+  </script>
 </section>
