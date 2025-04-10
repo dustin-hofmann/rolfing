@@ -25,9 +25,9 @@ const { title, description = "Rolfing Therapie von Fransisca Satyani Indriastant
   
   <style is:global>
     :root {
-      --primary: #7BBDC3;
-      --secondary: #0A5B6A;
-      --accent: #F8B76B;
+      --primary: #2B4A34;
+      --secondary: #E78C43;
+      --accent: #BFA04B;
     }
     
     body {
@@ -57,9 +57,21 @@ const { title, description = "Rolfing Therapie von Fransisca Satyani Indriastant
       color: white;
     }
     
+    .btn-accent {
+      background-color: var(--accent);
+      border-color: var(--accent);
+      color: white;
+    }
+    
+    .btn-accent:hover {
+      background-color: #AD9343;
+      border-color: #AD9343;
+      color: white;
+    }
+    
     .btn-primary-custom:hover {
-      background-color: #074654;
-      border-color: #074654;
+      background-color: #BFA04B;
+      border-color: #BFA04B;
       color: white;
     }
     
@@ -131,13 +143,13 @@ const { title, description = "Rolfing Therapie von Fransisca Satyani Indriastant
     }
     
     .accordion-button:not(.collapsed) {
-      background-color: #e7f1f2;
+      background-color: rgba(231, 140, 67, 0.1);
       color: var(--secondary);
     }
     
     .accordion-button:focus {
-      border-color: var(--primary);
-      box-shadow: 0 0 0 0.25rem rgba(123, 189, 195, 0.25);
+      border-color: var(--secondary);
+      box-shadow: 0 0 0 0.25rem rgba(231, 140, 67, 0.25);
     }
     
     .fade-in {
@@ -181,8 +193,10 @@ const { title, description = "Rolfing Therapie von Fransisca Satyani Indriastant
         const href = link.getAttribute('href');
         if (currentPath.includes(href) && href !== '/') {
           link.style.fontWeight = 'bold';
+          link.style.color = '#BFA04B';
         } else if (href === '/' && (currentPath === '/' || currentPath === '/index')) {
           link.style.fontWeight = 'bold';
+          link.style.color = '#BFA04B';
         }
       });
     });
