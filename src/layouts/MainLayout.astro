@@ -4,348 +4,333 @@ import Footer from '../components/Footer.astro';
 import CookieConsent from '../components/CookieConsent.astro';
 
 interface Props {
-  title: string;
-  description?: string;
+    title: string;
+    description?: string;
 }
 
-const { title, description = "Rolfing Therapie von Fransisca Satyani Indriastanti in Bochum" } = Astro.props;
+const {title, description = "Rolfing Therapie von Fransisca Satyani Indriastanti in Bochum"} = Astro.props;
 ---
 
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
-  <title>{title}</title>
-  <meta name="description" content={description}>
-  
-  <!-- SEO Meta Tags -->
-  <meta name="author" content="Fransisca Satyani Indriastanti & Igor Zener">
-  <meta name="robots" content="index, follow">
-  <meta name="keywords" content="Rolfing, Strukturelle Integration, Faszientherapie, Körperhaltung, Rolfing Bochum, Rolfer Bochum, Rolfing Ruhrgebiet, Körperarbeit, Fascia, Schmerzbehandlung, Beweglichkeit verbessern">
-  <link rel="canonical" href={Astro.url.href}>
-  
-  <!-- Open Graph / Facebook -->
-  <meta property="og:type" content="website">
-  <meta property="og:url" content={Astro.url.href}>
-  <meta property="og:title" content={title}>
-  <meta property="og:description" content={description}>
-  <meta property="og:image" content="/images/rolfing-og-image.jpg">
-  
-  <!-- Twitter -->
-  <meta property="twitter:card" content="summary_large_image">
-  <meta property="twitter:url" content={Astro.url.href}>
-  <meta property="twitter:title" content={title}>
-  <meta property="twitter:description" content={description}>
-  <meta property="twitter:image" content="/images/rolfing-og-image.jpg">
-  
-  <!-- Bootstrap CSS -->
-  <link href={`${Astro.site}css/bootstrap.min.css`} rel="stylesheet">
-  <!-- Bootstrap Icons -->
-  <link href={`${Astro.site}font/bootstrap-icons.min.css`} rel="stylesheet">
-  
-  <style is:global>
-    :root {
-      --primary: #2B4A34;
-      --secondary: #E78C43;
-      --accent: #BFA04B;
-    }
-    
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      position: relative;
-    }
-    
-    .bg-primary-custom {
-      background-color: var(--primary);
-    }
-    
-    .bg-secondary-custom {
-      background-color: var(--secondary);
-    }
-    
-    .text-primary-custom {
-      color: var(--primary);
-    }
-    
-    .text-secondary-custom {
-      color: var(--secondary);
-    }
-    
-    .btn-primary-custom {
-      background-color: var(--secondary);
-      border-color: var(--secondary);
-      color: white;
-    }
-    
-    .btn-accent {
-      background-color: var(--accent);
-      border-color: var(--accent);
-      color: white;
-    }
-    
-    .btn-accent:hover {
-      background-color: #AD9343;
-      border-color: #AD9343;
-      color: white;
-    }
-    
-    .btn-primary-custom:hover {
-      background-color: #BFA04B;
-      border-color: #BFA04B;
-      color: white;
-    }
-    
-    .navbar {
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    }
-    
-    .navbar-brand img {
-      height: 40px;
-    }
-    
-    .footer {
-      color: white;
-    }
-    
-    .footer a {
-      color: white;
-      text-decoration: none;
-    }
-    
-    .footer a:hover {
-      opacity: 0.8;
-    }
-    
-    .legal-content h2 {
-      color: var(--secondary);
-      margin-top: 2rem;
-      margin-bottom: 1rem;
-    }
-    
-    .legal-content h3 {
-      color: var(--secondary);
-      margin-top: 1.5rem;
-      margin-bottom: 1rem;
-      font-size: 1.3rem;
-    }
-    
-    .breadcrumb-item + .breadcrumb-item::before {
-      color: var(--primary);
-    }
-    
-    /* Weitere spezifische Stile für die Homepage */
-    .hero {
-      padding-top: 100px;
-      padding-bottom: 70px;
-      color: white;
-    }
-    
-    .quote {
-      padding: 60px 0;
-      color: white;
-    }
-    
-    .benefit-item {
-      transition: transform 0.3s;
-    }
-    
-    .benefit-item:hover {
-      transform: translateY(-5px);
-    }
-    
-    .border-custom {
-      border-color: var(--primary) !important;
-    }
-    
-    .card-icon {
-      font-size: 1.5rem;
-      color: var(--primary);
-    }
-    
-    .accordion-button:not(.collapsed) {
-      background-color: rgba(231, 140, 67, 0.1);
-      color: var(--secondary);
-    }
-    
-    .accordion-button:focus {
-      border-color: var(--secondary);
-      box-shadow: 0 0 0 0.25rem rgba(231, 140, 67, 0.25);
-    }
-    
-    .fade-in {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-    }
-    
-    .fade-in.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    
-    .rounded-circle-img {
-      width: 300px;
-      height: 300px;
-      object-fit: cover;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <title>{title}</title>
+    <meta name="description" content={description}>
+
+    <!-- SEO Meta Tags -->
+    <meta name="author" content="Fransisca Satyani Indriastanti & Igor Zener">
+    <meta name="robots" content="index, follow">
+    <meta name="keywords"
+          content="Rolfing, Strukturelle Integration, Faszientherapie, Körperhaltung, Rolfing Bochum, Rolfer Bochum, Rolfing Ruhrgebiet, Körperarbeit, Fascia, Schmerzbehandlung, Beweglichkeit verbessern">
+    <link rel="canonical" href={Astro.url.href}>
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content={Astro.url.href}>
+    <meta property="og:title" content={title}>
+    <meta property="og:description" content={description}>
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content={Astro.url.href}>
+    <meta property="twitter:title" content={title}>
+    <meta property="twitter:description" content={description}>
+    <meta property="twitter:image" content="/images/rolfing-og-image.jpg">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.1/font/bootstrap-icons.min.css"
+          rel="stylesheet">
+
+    <style is:global>
+        :root {
+            --primary: #2B4A34;
+            --secondary: #E78C43;
+            --accent: #BFA04B;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            position: relative;
+        }
+
+        .bg-primary-custom {
+            background-color: var(--primary);
+        }
+
+        .bg-secondary-custom {
+            background-color: var(--secondary);
+        }
+
+        .text-primary-custom {
+            color: var(--primary);
+        }
+
+        .text-secondary-custom {
+            color: var(--secondary);
+        }
+
+        .btn-primary-custom {
+            background-color: var(--secondary);
+            border-color: var(--secondary);
+            color: white;
+        }
+
+        .btn-accent {
+            background-color: var(--accent);
+            border-color: var(--accent);
+            color: white;
+        }
+
+        .btn-accent:hover {
+            background-color: #AD9343;
+            border-color: #AD9343;
+            color: white;
+        }
+
+        .btn-primary-custom:hover {
+            background-color: #BFA04B;
+            border-color: #BFA04B;
+            color: white;
+        }
+
+        .navbar {
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-brand img {
+            height: 40px;
+        }
+
+        .footer {
+            color: white;
+        }
+
+        .footer a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            opacity: 0.8;
+        }
+
+        .legal-content h2 {
+            color: var(--secondary);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .legal-content h3 {
+            color: var(--secondary);
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .breadcrumb-item + .breadcrumb-item::before {
+            color: var(--primary);
+        }
+
+        /* Weitere spezifische Stile für die Homepage */
+        .hero {
+            padding-top: 100px;
+            padding-bottom: 70px;
+            color: white;
+        }
+
+        .quote {
+            padding: 60px 0;
+            color: white;
+        }
+
+        .benefit-item {
+            transition: transform 0.3s;
+        }
+
+        .benefit-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .border-custom {
+            border-color: var(--primary) !important;
+        }
+
+        .card-icon {
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+
+        .accordion-button:not(.collapsed) {
+            background-color: rgba(231, 140, 67, 0.1);
+            color: var(--secondary);
+        }
+
+        .accordion-button:focus {
+            border-color: var(--secondary);
+            box-shadow: 0 0 0 0.25rem rgba(231, 140, 67, 0.25);
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .rounded-circle-img {
+            width: 300px;
+            height: 300px;
+            object-fit: cover;
+        }
+    </style>
 </head>
 <body data-bs-spy="scroll" data-bs-target="#navbar">
-  <Header isHomePage={Astro.url.pathname === '/' || Astro.url.pathname === '/'} />
-  
-  <main>
-    <slot />
-  </main>
-  
-  <Footer />
-  <CookieConsent />
-  
-  <!-- Bootstrap Bundle mit Popper -->
-  <script src="/js/bootstrap.bundle.min.js" is:inline></script>
-  
-  <!-- Strukturierte Daten für Google (JSON-LD) -->
-  <script type="application/ld+json">
+<Header isHomePage={Astro.url.pathname === '/' || Astro.url.pathname === '/rolfing/'}/>
+
+<main>
+    <slot/>
+</main>
+
+<Footer/>
+<CookieConsent/>
+
+<!-- Bootstrap Bundle mit Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Strukturierte Daten für Google (JSON-LD) -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "HealthAndBeautyBusiness",
+    "name": "Fascia & Skincare Atelier – Rolfing® Therapie",
+    "url": "https://www.fascia-skincare.de",
+    "telephone": "0234 794 690 82",
+    "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Am Neggenborn 98",
+    "addressLocality": "Bochum",
+    "postalCode": "44892",
+    "addressCountry": "DE"
+},
+    "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 51.46777,
+    "longitude": 7.21089
+},
+    "openingHoursSpecification": [
     {
-      "@context": "https://schema.org",
-      "@type": "HealthAndBeautyBusiness",
-      "name": "Fascia & Skincare Atelier - Rolfing® Therapie",
-      "url": "https://www.fascia-skincare.de",
-      "telephone": "0234 794 690 82",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "Am Neggenborn 98",
-        "addressLocality": "Bochum",
-        "postalCode": "44892",
-        "addressCountry": "DE"
-      },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": 51.46777,
-        "longitude": 7.21089
-      },
-      "openingHoursSpecification": [
-      {
         "@type": "OpeningHoursSpecification",
         "dayOfWeek": ["Monday", "Tuesday", "Wednesday"],
         "opens": "10:00",
         "closes": "19:00"
-      },
-      {
+    },
+    {
         "@type": "OpeningHoursSpecification",
         "dayOfWeek": "Friday",
         "opens": "09:00",
         "closes": "15:00"
-      }
-    ]
-      "priceRange": "€€",
-      "areaServed": ["Bochum"],
-      "description": "Professionelle Rolfing® Therapie (Strukturelle Integration) in Bochum durch zertifizierte Rolfer®. Verbessern Sie Ihre Körperhaltung, reduzieren Sie Schmerzen und steigern Sie Ihre Beweglichkeit."
     }
-  </script>
-  
-  <!-- Breadcrumbs Schema -->
-  <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-        {
-          "@type": "ListItem",
-          "position": 1,
-          "name": "Home",
-          "item": "https://www.fascia-skincare.de"
-        },
-        {
-          "@type": "ListItem",
-          "position": 2,
-          "name": "Rolfing Therapie",
-          "item": "https://www.fascia-skincare.de"
-        }
-      ]
-    }
-  </script>
+],
+    "priceRange": "€€",
+    "areaServed": ["Bochum"],
+    "description": "Professionelle Rolfing® Therapie (Strukturelle Integration) in Bochum durch zertifizierte Rolfer®. Verbessern Sie Ihre Körperhaltung, reduzieren Sie Schmerzen und steigern Sie Ihre Beweglichkeit."
+}
+</script>
 
-  <!-- Custom JavaScript -->
-  <script>
-    // Für aktiven Link in der gemeinsamen Header-Leiste
-    document.addEventListener('DOMContentLoaded', function() {
-      const currentPath = window.location.pathname;
-      const links = document.querySelectorAll('div[style*="background-color: #f8f8f8"] a');
-      
-      links.forEach(link => {
+<!-- Custom JavaScript -->
+<script>
+// Für aktiven Link in der gemeinsamen Header-Leiste
+document.addEventListener('DOMContentLoaded', function() {
+    const currentPath = window.location.pathname;
+    const links = document.querySelectorAll('div[style*="background-color: #f8f8f8"] a');
+
+    links.forEach(link => {
         const href = link.getAttribute('href');
         if (currentPath.includes(href) && href !== '/') {
-          link.style.fontWeight = 'bold';
-          link.style.color = '#BFA04B';
+            link.style.fontWeight = 'bold';
+            link.style.color = '#BFA04B';
         } else if (href === '/' && (currentPath === '/' || currentPath === '/index')) {
-          link.style.fontWeight = 'bold';
-          link.style.color = '#BFA04B';
+            link.style.fontWeight = 'bold';
+            link.style.color = '#BFA04B';
         }
-      });
     });
-    
-    // Smooth Scrolling für Anker-Links
-    document.addEventListener('DOMContentLoaded', function() {
-      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-          e.preventDefault();
-          
-          const targetId = this.getAttribute('href');
-          const targetElement = document.querySelector(targetId);
-          
-          if (targetElement) {
-            window.scrollTo({
-              top: targetElement.offsetTop - 70,
-              behavior: 'smooth'
-            });
-            
-            // Mobile Menü schließen, falls geöffnet
-            const navbarCollapse = document.querySelector('.navbar-collapse');
-            if (navbarCollapse && navbarCollapse.classList.contains('show')) {
-              navbarCollapse.classList.remove('show');
+});
+
+// Smooth Scrolling für Anker-Links
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+
+            const targetId = this.getAttribute('href');
+            const targetElement = document.querySelector(targetId);
+
+            if (targetElement) {
+                window.scrollTo({
+                    top: targetElement.offsetTop - 70,
+                    behavior: 'smooth'
+                });
+
+                // Mobile Menü schließen, falls geöffnet
+
+                const navbarCollapse = document.querySelector('.navbar-collapse');
+                if (navbarCollapse && navbarCollapse.classList.contains('show')) {
+                    navbarCollapse.classList.remove('show');
+                }
             }
-          }
         });
-      });
-      
-      // Scroll-Animation für Elemente
-      const fadeElements = document.querySelectorAll('.fade-in');
-      
-      function checkScroll() {
-        fadeElements.forEach(element => {
-          const elementTop = element.getBoundingClientRect().top;
-          const windowHeight = window.innerHeight;
-          
-          if (elementTop < windowHeight * 0.85) {
-            element.classList.add('visible');
-          }
-        });
-      }
-      
-      window.addEventListener('scroll', checkScroll);
-      window.addEventListener('load', checkScroll);
-      
-      // Formular-Absendung handhaben
-      const contactForm = document.getElementById('contactForm');
-      if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
-          e.preventDefault();
-          
-          // Get form data
-          const formData = new FormData(contactForm);
-          const formDataObj = Object.fromEntries(formData.entries());
-          
-          // Hier würden Sie normalerweise die Daten an einen Server senden
-          // Für Demonstrationszwecke zeigen wir nur eine Erfolgsmeldung
-          alert('Vielen Dank für Ihre Nachricht! Ich werde mich so schnell wie möglich bei Ihnen melden.');
-          
-          // Formular zurücksetzen
-          contactForm.reset();
-        });
-      }
     });
-  </script>
+
+    // Scroll-Animation für Elemente
+
+    const fadeElements = document.querySelectorAll('.fade-in');
+
+    function checkScroll() {
+        fadeElements.forEach(element => {
+            const elementTop = element.getBoundingClientRect().top;
+            const windowHeight = window.innerHeight;
+
+            if (elementTop < windowHeight * 0.85) {
+                element.classList.add('visible');
+            }
+        });
+    }
+
+    window.addEventListener('scroll', checkScroll);
+    window.addEventListener('load', checkScroll);
+
+    // Formular-Absendung handhaben
+
+    const contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+        contactForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            // Get form data
+
+            const formData = new FormData(contactForm);
+            const formDataObj = Object.fromEntries(formData.entries());
+
+            // Hier würden Sie normalerweise die Daten an einen Server senden
+          // Für Demonstrationszwecke zeigen wir nur eine Erfolgsmeldung
+
+            alert('Vielen Dank für Ihre Nachricht! Ich werde mich so schnell wie möglich bei Ihnen melden.');
+
+            // Formular zurücksetzen
+
+            contactForm.reset();
+        });
+    }
+});
+</script>
 </body>
 </html>
