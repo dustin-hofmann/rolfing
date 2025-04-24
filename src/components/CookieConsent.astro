@@ -1,0 +1,81 @@
+---
+---
+
+<div id="cookieConsentBanner" class="cookie-consent-banner">
+  <div class="cookie-content">
+    <h3>Cookie-Hinweis</h3>
+    <p>Diese Website verwendet Cookies und ähnliche Technologien, um Ihnen ein besseres Erlebnis zu bieten und die Websitefunktionalität zu gewährleisten. Durch die Nutzung unserer Website stimmen Sie der Verwendung von technisch notwendigen Cookies zu. Detaillierte Informationen finden Sie in unserer <a href="/datenschutz">Datenschutzerklärung</a>.</p>
+    <div class="cookie-buttons">
+      <button id="cookieConsentAccept" class="btn btn-primary-custom">Akzeptieren</button>
+      <button id="cookieConsentReject" class="btn btn-outline-secondary">Nur notwendige Cookies</button>
+    </div>
+  </div>
+</div>
+
+<style>
+  .cookie-consent-banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: white;
+    padding: 1rem;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    display: none;
+  }
+
+  .cookie-content {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 1rem;
+  }
+
+  .cookie-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+
+  @media (max-width: 768px) {
+    .cookie-buttons {
+      flex-direction: column;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const cookieBanner = document.getElementById('cookieConsentBanner');
+    const acceptButton = document.getElementById('cookieConsentAccept');
+    const rejectButton = document.getElementById('cookieConsentReject');
+    
+    // Überprüfen, ob das Cookie-Consent bereits gesetzt wurde
+    const consentAccepted = localStorage.getItem('cookieConsentAccepted');
+    const consentRejected = localStorage.getItem('cookieConsentRejected');
+    
+    // Wenn weder akzeptiert noch abgelehnt wurde, Banner anzeigen
+    if (!consentAccepted && !consentRejected) {
+      cookieBanner.style.display = 'block';
+    }
+    
+    // Event-Listener für den "Akzeptieren"-Button
+    acceptButton.addEventListener('click', function() {
+      localStorage.setItem('cookieConsentAccepted', 'true');
+      localStorage.setItem('cookieConsentRejected', 'false');
+      cookieBanner.style.display = 'none';
+      
+      // Hier könnten Tracking-Cookies gesetzt werden
+      // ...
+    });
+    
+    // Event-Listener für den "Nur notwendige Cookies"-Button
+    rejectButton.addEventListener('click', function() {
+      localStorage.setItem('cookieConsentAccepted', 'false');
+      localStorage.setItem('cookieConsentRejected', 'true');
+      cookieBanner.style.display = 'none';
+      
+      // Hier würden keine Tracking-Cookies gesetzt werden
+    });
+  });
+</script>
