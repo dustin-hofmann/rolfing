@@ -2,7 +2,6 @@
 interface FAQItem {
   question: string;
   answer: string;
-  showDefault?: boolean;
 }
 
 const faqs: FAQItem[] = [
@@ -10,7 +9,6 @@ const faqs: FAQItem[] = [
     question: "Wie läuft eine Rolfing-Sitzung ab?",
     answer:
       "Eine Rolfing-Sitzung dauert in der Regel 60-90 Minuten. Zu Beginn findet ein kurzes Gespräch statt, um Ihre aktuellen Beschwerden und Ziele zu besprechen. Anschließend erfolgt die manuelle Behandlung, bei der ich gezielt an Ihren Faszien arbeite. Die Behandlung findet in der Regel in Unterwäsche statt, damit ich die Körperstrukturen gut beobachten kann. Nach der Behandlung gebe ich Ihnen häufig Übungen oder Hinweise für den Alltag mit.",
-    showDefault: true,
   },
   {
     question: "Ist Rolfing schmerzhaft?",
@@ -48,7 +46,7 @@ const faqSchema = {
 };
 ---
 
-<section class="py-5 fade-in">
+<section id="faq" class="py-5 fade-in">
   <div class="container">
     <div class="row text-center mb-5">
       <div class="col-lg-8 mx-auto">
@@ -63,36 +61,29 @@ const faqSchema = {
 
     <div class="row justify-content-center">
       <div class="col-lg-8">
-        <div class="accordion" id="faqAccordion">
-          {faqs.map((faq, index) => (
-            <div class="accordion-item" key={index}>
-              <h2 class="accordion-header" id={`heading${index}`}>
-                <button
-                  class={`accordion-button ${
-                    !faq.showDefault ? "collapsed" : ""
-                  }`}
+        {faqs.map((faq, index) => (
+            <div class="simple-faq-item border rounded mb-3" key={index}>
+              <button
+                  class="simple-faq-question w-100 text-start border-0 p-4 bg-light d-flex justify-content-between align-items-center"
                   type="button"
-                  data-bs-toggle="collapse"
-                  data-bs-target={`#collapse${index}`}
-                  aria-expanded={faq.showDefault ? "true" : "false"}
-                  aria-controls={`collapse${index}`}
-                >
-                  {faq.question}
-                </button>
-              </h2>
-              <div
-                id={`collapse${index}`}
-                class={`accordion-collapse collapse ${
-                  faq.showDefault ? "show" : ""
-                }`}
-                aria-labelledby={`heading${index}`}
-                data-bs-parent="#faqAccordion"
+                  aria-expanded="false"
+                  aria-controls={`answer-${index}`}
+                  data-index={index}
               >
-                <div class="accordion-body">{faq.answer}</div>
+                <span class="fw-semibold text-primary-custom fs-5">{faq.question}</span>
+                <span class="simple-faq-icon text-secondary-custom fs-4" id={`icon-${index}`}>+</span>
+              </button>
+              <div
+                  class="simple-faq-answer p-0 overflow-hidden"
+                  id={`answer-${index}`}
+                  hidden
+              >
+                <div class="p-4 border-top">
+                  <p class="mb-0 text-muted">{faq.answer}</p>
+                </div>
               </div>
             </div>
-          ))}
-        </div>
+        ))}
       </div>
     </div>
   </div>
@@ -101,3 +92,47 @@ const faqSchema = {
     {JSON.stringify(faqSchema)}
   </script>
 </section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.simple-faq-question').forEach(btn => {
+      btn.addEventListener('click', function() {
+        const index = btn.getAttribute('data-index');
+        const answer = document.getElementById(`answer-${index}`);
+        const icon = document.getElementById(`icon-${index}`);
+        const expanded = btn.getAttribute('aria-expanded') === 'true';
+
+        if (answer && icon) {
+          if (expanded) {
+            answer.hidden = true;
+            btn.setAttribute('aria-expanded', 'false');
+            icon.textContent = '+';
+            icon.style.transform = 'rotate(0deg)';
+          } else {
+            answer.hidden = false;
+            btn.setAttribute('aria-expanded', 'true');
+            icon.textContent = '×';
+            icon.style.transform = 'rotate(180deg)';
+          }
+        }
+      });
+    });
+  });
+</script>
+
+<style>
+.simple-faq-question:hover {
+    background-color: #e9ecef !important;
+    }
+.simple-faq-question:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(231, 140, 67, 0.25);
+    }
+.simple-faq-item {
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: box-shadow 0.3s ease;
+    }
+.simple-faq-item:hover {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    }
+</style>
