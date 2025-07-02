@@ -1,5 +1,4 @@
 ---
-import SharedNavBar from './SharedNavBar.astro';
 import MainNavBar from './MainNavBar.astro';
 
 interface Props {
@@ -9,5 +8,4 @@ interface Props {
 const { isHomePage = false } = Astro.props;
 ---
 
-<SharedNavBar />
 <MainNavBar isHomePage={isHomePage} />

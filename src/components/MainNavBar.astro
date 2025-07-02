@@ -6,37 +6,42 @@ interface Props {
 const { isHomePage = false } = Astro.props;
 ---
 
-<nav id="navbar" class={`navbar navbar-expand-lg navbar-dark ${isHomePage ? 'fixed-top' : 'sticky-top'}`} style="background-color: #E78C43;">
-  <div class="container">
-    <a class="navbar-brand d-flex align-items-center" href={isHomePage ? "#" : "/"}>
-      <span class="fw-bold" style="color: #2B4A34;">Rolfing Therapie</span>
-    </a>
-    
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ms-auto">
-        <li class="nav-item">
-          <a class="nav-link text-white" href={isHomePage ? "#home" : "/#home"}>Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-white" href={isHomePage ? "#benefits" : "/#benefits"}>Vorteile</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-white" href={isHomePage ? "#method" : "/#method"}>Die Methode</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-white" href={isHomePage ? "#holistic-packages" : "/#holistic-packages"}>Pakete</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-white" href={isHomePage ? "#about" : "/#about"}>Über Mich</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-white" href={isHomePage ? "#contact" : "/#contact"}>Kontakt</a>
-        </li>
-      </ul>
+<div class={`header-container ${isHomePage ? 'fixed-top' : 'sticky-top'}`}>
+  <nav id="navbar" class="navbar navbar-expand-lg navbar-dark" style="background-color: #E78C43;">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center" href={isHomePage ? "#" : "/"}>
+        <span class="fw-bold" style="color: #2B4A34;">SalaThai Rolfing und Beauty</span>
+      </a>
+      
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link text-white" href={isHomePage ? "#home" : "/#home"}>Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href={isHomePage ? "#benefits" : "/#benefits"}>Vorteile</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href={isHomePage ? "#method" : "/#method"}>Die Methode</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href={isHomePage ? "#holistic-packages" : "/#holistic-packages"}>Preise</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href={isHomePage ? "#testimonials" : "/#testimonials"}>Bewertungen</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href={isHomePage ? "#about" : "/#about"}>Über Mich</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href={isHomePage ? "#contact" : "/#contact"}>Kontakt</a>
+          </li>
+        </ul>
+      </div>
     </div>
-  </div>
-</nav>
+  </nav>
+</div>
