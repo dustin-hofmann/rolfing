@@ -6,32 +6,24 @@ interface BenefitItem {
 
 const benefits: BenefitItem[] = [
   {
-    title: "Schmerzen reduzieren",
-    text: "Chronischen Schmerzen im Rücken, Nacken und Schulterbereich vorbeugen."
+    title: "Schmerz & Verspannung die Grundlage entziehen",
+    text: "Viele Beschwerden im Rücken, Nacken oder in den Gelenken entstehen durch Spannungen im faszialen Gewebe, das unsere Muskeln, Knochen und Organe vernetzt. Mit gezielter Arbeit an den Faszien können Blockaden gelöst und Bewegungssperren aufgebrochen werden, sodass dein Körper neue Bewegungsfreiheit gewinnt."
   },
   {
-    title: "Körperbewusstsein verbessern",
-    text: "Körperbewusstsein, Stressabbau und sportliche Leistungen unterstützen."
+    title: "Verbessertes Körperbewusstsein & Atmung",
+    text: "Faszien enthalten zahlreiche Rezeptoren zur Wahrnehmung von Dehnung und Position. Wenn wir sie wieder beweglich machen und du in der Behandlung lernst wieder mehr darauf zu achten, steigt deine Körperwahrnehmung. Du spürst mehr, reagierst schneller und kannst deine Bewegungen bewusster steuern. Dies kann oftmals auch zu einer Freien und bewussteren Atmung führen."
   },
   {
-    title: "Beweglichkeit erhöhen",
-    text: "Beweglichkeit und Körperhaltung verbessern."
-  },
-  {
-    title: "Atmung optimieren",
-    text: "Atmung, Verdauung und Regenerationsfähigkeit optimieren."
-  },
-  {
-    title: "Wohlbefinden steigern",
-    text: "Zu mehr Wohlbefinden und Selbstbewusstsein führen."
-  },
-  {
-    title: "Leistungsfähigkeit steigern",
-    text: "Die körperliche und mentale Leistungsfähigkeit im Alltag und im Sport verbessern."
+    title: "Nachhaltigkeit durch neue Achtsamkeit",
+    text: "Die Veränderung passiert nicht nur während der Behandlung, sondern auch durch gezielte Übungen zwischen den Sitzungen. Dein fasziales Gewebe lernt, sich neu zu ordnen. Die Schwerkraft wird zum Mithelfer, nicht zum Gegner."
   },
   {
     title: "Ganzheitlicher Ansatz",
-    text: "Als Ergänzung zu Rolfing biete ich auch Thai-Massage und Gesichtspflege für ein vollständiges Wohlbefinden an."
+    text: "Rolfing wirkt nicht nur auf den Körper, sondern ebenso auf Geist und Seele. Haltung, Bewegung und Emotionen hängen zusammen. Oft berichten mir Kunden, dass ihr ganzes Leben sich zum Positiven verändert hat, nicht nur das Körpergefühl."
+  },
+  {
+    title: "Weitere Vorteile im Überblick",
+    text: "• Mehr Beweglichkeit & Flexibilität\n• Verbesserung der Körperhaltung (Becken, Wirbelsäule, Schulterbereich)\n• Stressabbau & Entspannung im Nervensystem\n• Unterstützung deiner Selbstregulation\n• Bei Bewegung, Sport & Alltag spürbar kraftvoller und ausgeglichener"
   }
 ];
 ---
@@ -40,11 +32,11 @@ const benefits: BenefitItem[] = [
   <div class="container">
     <div class="row text-center mb-5">
       <div class="col-lg-8 mx-auto">
-        <h2 class="display-5 fw-bold text-secondary-custom mb-3">Vorteile der Rolfing®-Methode</h2>
-        <p class="lead">Können den Klientinnen ein bewussteres Lebensgefühl geben und körperliche Einschränkungen reduzieren. Rolfing kann:</p>
+        <h2 class="display-5 fw-bold text-secondary-custom mb-3">Deine Vorteile durch Rolfing®, was du wirklich spürst</h2>
+        <p class="lead">Rolfing® ist <strong>keine klassische Massage</strong>, es ist eine <strong>ganzheitliche Methode</strong>, die das Zusammenspiel von Faszien, Haltung und Bewegung nachhaltig neu organisiert. Aber vor allem ist Rolfing eine Einladung: an dich, deinen Körper wieder wirklich zu spüren, verstehen und vertrauen zu lernen.</p>
       </div>
     </div>
-    
+
     <div class="row g-4">
       {benefits.map((benefit) => (
         <div class="col-md-6 col-lg-4">
@@ -56,7 +48,7 @@ const benefits: BenefitItem[] = [
                 </div>
                 <h3 class="card-title h5 mb-0 text-secondary-custom">{benefit.title}</h3>
               </div>
-              <p class="card-text">{benefit.text}</p>
+              <p class="card-text" set:html={benefit.text.replace(/\n/g, '<br>')}></p>
             </div>
           </div>
         </div>

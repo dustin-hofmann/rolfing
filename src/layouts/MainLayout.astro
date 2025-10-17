@@ -2,6 +2,8 @@
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import CookieConsent from '../components/CookieConsent.astro';
+import StickyCTA from '../components/StickyCTA.astro';
+import WhatsAppButton from '../components/WhatsAppButton.astro';
 
 interface Props {
     title: string;
@@ -24,7 +26,7 @@ const {title, description = "Rolfing Therapie von Fransisca Satyani Indriastanti
     <meta name="author" content="Fransisca Satyani Indriastanti & Igor Zener">
     <meta name="robots" content="index, follow">
     <meta name="keywords"
-          content="Rolfing, Strukturelle Integration, Faszientherapie, Körperhaltung, Rolfing Bochum, Rolfer Bochum, Rolfing Ruhrgebiet, Körperarbeit, Fascia, Schmerzbehandlung, Beweglichkeit verbessern">
+          content="Rolfing Bochum, Faszienbehandlung, Strukturelle Integration, Körperarbeit, Nackenschmerzen, Rückenschmerzen, Hüftprobleme, Rolfer Bochum, Faszientherapie, Körperhaltung verbessern, Beweglichkeit, neue Leichtigkeit, Körperbewusstsein, nachhaltige Körperarbeit, Faszienheilung">
     <link rel="canonical" href={Astro.url.href}>
 
     <!-- Open Graph / Facebook -->
@@ -38,13 +40,13 @@ const {title, description = "Rolfing Therapie von Fransisca Satyani Indriastanti
     <meta property="twitter:url" content={Astro.url.href}>
     <meta property="twitter:title" content={title}>
     <meta property="twitter:description" content={description}>
-    <meta property="twitter:image" content="/images/rolfing-og-image.jpg">
+    <meta property="twitter:image" content="/images/hero.webp">
+    <meta property="og:image" content="/images/hero.webp">
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Bootstrap Icons -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.1/font/bootstrap-icons.min.css"
-          rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.1/font/bootstrap-icons.min.css" rel="stylesheet">
 
     <style is:global>
         :root {
@@ -53,9 +55,37 @@ const {title, description = "Rolfing Therapie von Fransisca Satyani Indriastanti
             --accent: #BFA04B;
         }
 
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap');
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             position: relative;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .display-4 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+        }
+
+        .display-5 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+        }
+
+        .lead {
+            font-size: 1.25rem;
+            font-weight: 400;
+            line-height: 1.7;
         }
 
         .bg-primary-custom {
@@ -75,9 +105,11 @@ const {title, description = "Rolfing Therapie von Fransisca Satyani Indriastanti
         }
 
         .btn-primary-custom {
-            background-color: var(--secondary);
-            border-color: var(--secondary);
+            background: linear-gradient(135deg, #E78C43 0%, #d67a35 100%);
+            border: none;
             color: white;
+            box-shadow: 0 4px 15px rgba(231, 140, 67, 0.3);
+            transition: all 0.3s ease;
         }
 
         .btn-accent {
@@ -93,8 +125,9 @@ const {title, description = "Rolfing Therapie von Fransisca Satyani Indriastanti
         }
 
         .btn-primary-custom:hover {
-            background-color: #BFA04B;
-            border-color: #BFA04B;
+            background: linear-gradient(135deg, #d67a35 0%, #c76a2a 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(231, 140, 67, 0.4);
             color: white;
         }
 
@@ -141,6 +174,26 @@ const {title, description = "Rolfing Therapie von Fransisca Satyani Indriastanti
             padding-top: 100px;
             padding-bottom: 70px;
             color: white;
+            background: linear-gradient(135deg, #2B4A34 0%, #1a3020 50%, #2B4A34 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 50%, rgba(191, 160, 75, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(231, 140, 67, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero .container {
+            position: relative;
+            z-index: 1;
         }
 
         .quote {
@@ -191,17 +244,87 @@ const {title, description = "Rolfing Therapie von Fransisca Satyani Indriastanti
             height: 300px;
             object-fit: cover;
         }
+
+        /* Mobile Optimierungen */
+        @media (max-width: 768px) {
+            .hero {
+                padding-top: 80px;
+                padding-bottom: 50px;
+            }
+
+            .display-4 {
+                font-size: 2rem !important;
+            }
+
+            .display-5 {
+                font-size: 1.75rem !important;
+            }
+
+            .hero .lead {
+                font-size: 1rem;
+            }
+
+            .lead {
+                font-size: 1.1rem;
+            }
+
+            .rounded-circle-img {
+                width: 200px;
+                height: 200px;
+            }
+
+            .card-text {
+                font-size: 0.9rem;
+            }
+
+            .benefit-item .card-body {
+                padding: 1rem;
+            }
+
+            .card-title.h5 {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .display-4 {
+                font-size: 1.75rem !important;
+            }
+
+            .display-5 {
+                font-size: 1.5rem !important;
+            }
+        }
+
+        /* Skip to Content Link für Accessibility */
+        .skip-to-content {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: var(--secondary);
+            color: white;
+            padding: 8px 16px;
+            text-decoration: none;
+            z-index: 100;
+        }
+
+        .skip-to-content:focus {
+            top: 0;
+        }
     </style>
 </head>
 <body data-bs-spy="scroll" data-bs-target="#navbar">
+<a href="#main-content" class="skip-to-content">Zum Hauptinhalt springen</a>
 <Header isHomePage={Astro.url.pathname === '/' || Astro.url.pathname === '/rolfing/'}/>
 
-<main>
+<main id="main-content">
     <slot/>
 </main>
 
 <Footer/>
 <CookieConsent/>
+<StickyCTA/>
+<WhatsAppButton/>
 
 <!-- Bootstrap Bundle mit Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
@@ -215,12 +338,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
     links.forEach(link => {
         const href = link.getAttribute('href');
-        if (currentPath.includes(href) && href !== '/') {
-            link.style.fontWeight = 'bold';
-            link.style.color = '#BFA04B';
+        if (href && currentPath.includes(href) && href !== '/') {
+            (link as HTMLElement).style.fontWeight = 'bold';
+            (link as HTMLElement).style.color = '#BFA04B';
         } else if (href === '/' && (currentPath === '/' || currentPath === '/index')) {
-            link.style.fontWeight = 'bold';
-            link.style.color = '#BFA04B';
+            (link as HTMLElement).style.fontWeight = 'bold';
+            (link as HTMLElement).style.color = '#BFA04B';
         }
     });
 });
@@ -228,13 +351,13 @@ document.addEventListener('DOMContentLoaded', function() {
 // Smooth Scrolling für Anker-Links
 document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
+        anchor.addEventListener('click', function (this: HTMLAnchorElement, e) {
             e.preventDefault();
 
             const targetId = this.getAttribute('href');
-            const targetElement = document.querySelector(targetId);
+            const targetElement = targetId ? document.querySelector(targetId) : null;
 
-            if (targetElement) {
+            if (targetElement && targetElement instanceof HTMLElement) {
                 window.scrollTo({
                     top: targetElement.offsetTop - 70,
                     behavior: 'smooth'
@@ -270,7 +393,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Formular-Absendung handhaben
 
-    const contactForm = document.getElementById('contactForm');
+    const contactForm = document.getElementById('contactForm') as HTMLFormElement | null;
     if (contactForm) {
         contactForm.addEventListener('submit', function (e) {
             e.preventDefault();
@@ -280,10 +403,10 @@ document.addEventListener('DOMContentLoaded', function() {
             const formData = new FormData(contactForm);
             const formDataObj = Object.fromEntries(formData.entries());
 
-            // Hier würden Sie normalerweise die Daten an einen Server senden
+            // Hier würdest du normalerweise die Daten an einen Server senden
           // Für Demonstrationszwecke zeigen wir nur eine Erfolgsmeldung
 
-            alert('Vielen Dank für Ihre Nachricht! Ich werde mich so schnell wie möglich bei Ihnen melden.');
+            alert('Vielen Dank für deine Nachricht! Ich werde mich so schnell wie möglich bei dir melden.');
 
             // Formular zurücksetzen
 
@@ -298,7 +421,7 @@ document.addEventListener('DOMContentLoaded', function() {
 {
     "@context": "https://schema.org",
     "@type": "HealthAndBeautyBusiness",
-    "name": "Fascia & Skincare Atelier – Rolfing® Therapie",
+    "name": "Fascia & Skincare Atelier,Rolfing® Therapie",
     "url": "https://www.fascia-skincare.de",
     "telephone": "0234 794 690 82",
     "address": {

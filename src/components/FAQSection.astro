@@ -8,12 +8,12 @@ const faqs: FAQItem[] = [
   {
     question: "Wie läuft eine Rolfing-Sitzung ab?",
     answer:
-      "Eine Rolfing-Sitzung dauert in der Regel 60-90 Minuten. Zu Beginn findet ein kurzes Gespräch statt, um Ihre aktuellen Beschwerden und Ziele zu besprechen. Anschließend erfolgt die manuelle Behandlung, bei der ich gezielt an Ihren Faszien arbeite. Die Behandlung findet in der Regel in Unterwäsche statt, damit ich die Körperstrukturen gut beobachten kann. Nach der Behandlung gebe ich Ihnen häufig Übungen oder Hinweise für den Alltag mit.",
+      "Eine Rolfing-Sitzung dauert in der Regel 60-90 Minuten. Zu Beginn findet ein kurzes Gespräch statt, um deine aktuellen Beschwerden und Ziele zu besprechen. Anschließend erfolgt die manuelle Behandlung, bei der ich gezielt an deinen Faszien arbeite. Die Behandlung findet in der Regel in Unterwäsche statt, damit ich die Körperstrukturen gut beobachten kann. Nach der Behandlung gebe ich dir häufig Übungen oder Hinweise für den Alltag mit.",
   },
   {
     question: "Ist Rolfing schmerzhaft?",
     answer:
-      'Rolfing kann an manchen Stellen als intensiv empfunden werden, insbesondere wenn Faszien verklebt oder verhärtet sind. Die Behandlung sollte jedoch nicht schmerzhaft sein. Ich arbeite stets im Dialog mit Ihnen und passe die Intensität Ihrem persönlichen Empfinden an. Viele Klienten beschreiben die Empfindung als "guten Schmerz" oder als ein Gefühl der Erleichterung.',
+      'Rolfing kann an manchen Stellen als intensiv empfunden werden, insbesondere wenn Faszien verklebt oder verhärtet sind. Die Behandlung sollte jedoch nicht schmerzhaft sein. Ich arbeite stets im Dialog mit dir und passe die Intensität deinem persönlichen Empfinden an. Viele Klient*innen beschreiben die Empfindung als "guten Schmerz" oder als ein Gefühl der Erleichterung.',
   },
   {
     question: "Wie viele Sitzungen sind notwendig?",
@@ -23,13 +23,8 @@ const faqs: FAQItem[] = [
   {
     question: "Für wen ist Rolfing geeignet?",
     answer:
-      "Rolfing ist für Menschen jeden Alters geeignet, vom Jugendlichen bis zum Senior. Es kann hilfreich sein bei chronischen Schmerzen, Haltungsproblemen, nach Unfällen oder Operationen, für Sportler zur Leistungssteigerung oder einfach für Menschen, die ihr Körperbewusstsein verbessern möchten. Es gibt jedoch einige Kontraindikationen wie akute Entzündungen, Krebserkrankungen im akuten Stadium oder schwere Herzerkrankungen. Im Zweifelsfall sprechen Sie bitte mit Ihrem Arzt oder kontaktieren Sie mich direkt.",
-  },
-  {
-    question: "Bieten Sie auch andere Wellness-Behandlungen an?",
-    answer:
-      "Ja, als ganzheitliche Therapeutin biete ich neben Rolfing auch traditionelle Thai-Massage in meinem Sala Thai Wellness Studio und professionelle Gesichts- und Hautpflegebehandlungen in meinem Beauty Atelier an. Diese Behandlungen können sich wunderbar ergänzen. Rolfing verbessert die Körperstruktur, Thai-Massage löst Spannungen und Blockaden, und gezielte Gesichtsbehandlungen sorgen für ein strahlendes Äußeres. Fragen Sie mich gerne nach individuellen Empfehlungen für Ihre Bedürfnisse.",
-  },
+      "Rolfing ist für Menschen jeden Alters geeignet, vom Jugendlichen bis zum Senior. Es kann hilfreich sein bei chronischen Schmerzen, Haltungsproblemen, nach Unfällen oder Operationen, für Sportler zur Leistungssteigerung oder einfach für Menschen, die ihr Körperbewusstsein verbessern möchten. Es gibt jedoch einige Kontraindikationen wie akute Entzündungen, Krebserkrankungen im akuten Stadium oder schwere Herzerkrankungen. Im Zweifelsfall sprich bitte mit deinem Arzt oder kontaktiere mich direkt.",
+  }
 ];
 
 const faqSchema = {
@@ -62,7 +57,7 @@ const faqSchema = {
     <div class="row justify-content-center">
       <div class="col-lg-8">
         {faqs.map((faq, index) => (
-            <div class="simple-faq-item border rounded mb-3" key={index}>
+            <div class="simple-faq-item border rounded mb-3">
               <button
                   class="simple-faq-question w-100 text-start border-0 p-4 bg-light d-flex justify-content-between align-items-center"
                   type="button"

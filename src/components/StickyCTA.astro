@@ -1,0 +1,94 @@
+---
+---
+
+<div id="sticky-cta" class="sticky-cta">
+  <a href="#contact" class="btn btn-lg btn-primary-custom shadow-lg" aria-label="Jetzt Termin vereinbaren">
+    <i class="bi bi-calendar-check me-2"></i>
+    Jetzt Termin vereinbaren
+  </a>
+</div>
+
+<style>
+  .sticky-cta {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+    opacity: 0;
+    transform: translateY(100px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    pointer-events: none;
+  }
+
+  .sticky-cta.visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: all;
+  }
+
+  .sticky-cta .btn {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 50px;
+    white-space: nowrap;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% {
+      box-shadow: 0 4px 15px rgba(231, 140, 67, 0.3);
+    }
+    50% {
+      box-shadow: 0 6px 25px rgba(231, 140, 67, 0.5);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .sticky-cta {
+      bottom: 15px;
+      right: 15px;
+      left: 15px;
+      text-align: center;
+    }
+
+    .sticky-cta .btn {
+      width: 100%;
+      font-size: 0.9rem;
+      padding: 0.65rem 1rem;
+    }
+
+    .sticky-cta .btn i {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const stickyCTA = document.getElementById('sticky-cta');
+    const heroSection = document.querySelector('.hero');
+    const contactSection = document.getElementById('contact');
+
+    if (!stickyCTA || !heroSection) return;
+
+    function checkScroll() {
+      if (!stickyCTA || !heroSection) return;
+
+      const heroBottom = heroSection.getBoundingClientRect().bottom;
+      const contactTop = contactSection ? contactSection.getBoundingClientRect().top : Infinity;
+      const windowHeight = window.innerHeight;
+
+      // Show button after scrolling past hero, hide when reaching contact
+      if (heroBottom < 0 && contactTop > windowHeight * 0.2) {
+        stickyCTA.classList.add('visible');
+      } else {
+        stickyCTA.classList.remove('visible');
+      }
+    }
+
+    window.addEventListener('scroll', checkScroll);
+    checkScroll(); // Initial check
+  });
+</script>
+

@@ -4,28 +4,33 @@ interface PriceItem {
   duration: string;
   description: string;
   price: string;
+  originalPrice?: string;
   discount?: string;
+  isLimited?: boolean;
 }
 
 const prices: PriceItem[] = [
   {
     title: "Rolfing® Einzelsitzung",
     duration: "60 - 75 Minuten",
-    description: "Eine individuelle Rolfing-Sitzung, die auf Ihre spezifischen Bedürfnisse und Ziele abgestimmt ist. Ideal für Erst- und Folgebehandlungen.",
-    price: "120 €"
-  }
+    description: "Eine individuelle Rolfing-Sitzung, die auf deine spezifischen Bedürfnisse und Ziele abgestimmt ist. Ideal für Erst- und Folgebehandlungen.",
+    price: "120 €",
+    originalPrice: "140 €",
+    isLimited: true,
+    discount: "Zeitlich begrenzte Kennenlernaktion"
+  },
 ];
 ---
 
-<section id="holistic-packages" class="py-5 bg-white fade-in">
+<section id="prices" class="py-5 bg-white fade-in">
   <div class="container">
     <div class="row text-center mb-5">
       <div class="col-lg-8 mx-auto">
         <h2 class="display-5 fw-bold text-secondary-custom mb-3">Preise & Leistungen</h2>
-        <p class="lead">Transparente Preisgestaltung für Ihre Rolfing-Behandlung</p>
+        <p class="lead">Transparente Preisgestaltung für deine Rolfing-Behandlung</p>
       </div>
     </div>
-    
+
     <div class="row justify-content-center">
       <div class="col-lg-8">
         {prices.map((price) => (
@@ -33,20 +38,41 @@ const prices: PriceItem[] = [
             <div class="card-body p-4">
               <div class="row align-items-center">
                 <div class="col-md-8">
-                  <h3 class="h4 text-secondary-custom mb-2">{price.title}</h3>
+                  <h3 class="h3 fw-bold text-secondary-custom mb-2">{price.title}</h3>
                   <p class="mb-2"><i class="bi bi-clock text-primary-custom me-2"></i> {price.duration}</p>
                   <p class="mb-0">{price.description}</p>
                 </div>
                 <div class="col-md-4 text-md-end mt-3 mt-md-0">
-                  <span class="d-block h2 mb-0 text-secondary-custom">{price.price}</span>
-                  {price.discount && <small class="text-muted">{price.discount}</small>}
-                  <a href="#contact" class="btn btn-primary-custom mt-2">{price.title.includes("10er") ? "Anfragen" : "Termin buchen"}</a>
+                  {price.originalPrice && (
+                    <span class="d-block h5 mb-1 text-muted text-decoration-line-through">{price.originalPrice}</span>
+                  )}
+                  <span class="d-block h2 mb-1 text-secondary-custom">{price.price}</span>
+                  {price.discount && (
+                    <small class={`d-block mb-2 ${price.isLimited ? 'text-warning fw-bold' : 'text-success'}`}>
+                      {price.discount}
+                    </small>
+                  )}
+                  <a href="#contact" class="btn btn-primary-custom">
+                    {price.title.includes("10er") ? "Anfragen" : "Termin buchen"}
+                  </a>
                 </div>
               </div>
             </div>
           </div>
         ))}
-        
+
+        <div class="alert alert-light border-start border-primary-custom border-3" role="alert">
+          <div class="d-flex">
+            <div class="me-3 fs-4 text-primary-custom">
+              <i class="bi bi-info-circle"></i>
+            </div>
+            <div>
+              <h4 class="alert-heading h5 mb-1">Gratis-Erstgespräch inkl. Körperstrukturanalyse</h4>
+              <p class="mb-0">Für alle Behandlungsserien (3er, 5er oder 10er) bieten wir ein kostenloses Erstgespräch mit ausführlicher Körperstrukturanalyse. Perfekt, um die Rolfing-Methode kennenzulernen und deine individuellen Bedürfnisse zu besprechen.</p>
+            </div>
+          </div>
+        </div>
+
         <div class="alert alert-light border-start border-primary-custom border-3" role="alert">
           <div class="d-flex">
             <div class="me-3 fs-4 text-primary-custom">
@@ -54,7 +80,7 @@ const prices: PriceItem[] = [
             </div>
             <div>
               <h4 class="alert-heading h5 mb-1">Hinweis zur Kostenübernahme</h4>
-              <p class="mb-0">Eine Kostenübernahme durch gesetzliche Krankenkassen ist leider nicht möglich. Einige private Krankenkassen übernehmen jedoch unter Umständen einen Teil der Kosten. Bitte erkundigen Sie sich bei Ihrer Versicherung.</p>
+              <p class="mb-0">Eine Kostenübernahme durch gesetzliche Krankenkassen ist leider nicht möglich. Einige private Krankenkassen übernehmen jedoch unter Umständen einen Teil der Kosten. Bitte erkundige dich bei deiner Versicherung.</p>
             </div>
           </div>
         </div>
