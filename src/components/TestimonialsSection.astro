@@ -1,0 +1,125 @@
+---
+interface Testimonial {
+  type: 'text' | 'video';
+  name: string;
+  location?: string;
+  text?: string;
+  videoUrl?: string;
+  image?: string;
+  date?: string;
+}
+
+const testimonials: Testimonial[] = [
+  {
+    type: 'text',
+    name: 'Heike',
+    location: 'Brandenburg',
+    text: 'Zuerst einmal: Die Behandlung hat mir sehr, sehr gut getan. Ich fühle mich befreit. Komme also auf jeden Fall wieder.\n\nEine Frage wirkt sich das auch auf andere Teile aus. Ich habe nämlich seit Tagen ein dickes Fußsohlen... weißt du was ich meine, das sich jetzt überall was löst...',
+    date: 'November 2025'
+  },
+  // Weitere Erfahrungsberichte können hier hinzugefügt werden
+  // Beispiel für Video:
+  // {
+  //   type: 'video',
+  //   name: 'Videoname',
+  //   videoUrl: 'https://www.youtube.com/embed/VIDEO_ID',
+  // }
+];
+---
+
+<section id="testimonials" class="py-5 bg-light fade-in">
+  <div class="container">
+    <div class="row text-center mb-5">
+      <div class="col-lg-10 mx-auto">
+        <h2 class="display-5 fw-bold text-secondary-custom mb-3">Erfahrungsberichte</h2>
+        <p class="lead">Was Kunden über ihre Erfahrungen mit Rolfing® berichten</p>
+      </div>
+    </div>
+
+    <div class="row g-4 justify-content-center">
+      {testimonials.map((testimonial) => (
+        <div class="col-lg-6">
+          {testimonial.type === 'text' ? (
+            <div class="card h-100 shadow-sm testimonial-card bg-white">
+              <div class="card-body p-4">
+                <div class="mb-3">
+                  <i class="bi bi-quote" style="font-size: 3rem; opacity: 0.3; color: #E78C43;"></i>
+                </div>
+                <p class="card-text mb-4" style="font-size: 1.1rem; line-height: 1.8;" set:html={testimonial.text?.replace(/\n/g, '<br>')}>
+                </p>
+                <div class="d-flex align-items-center">
+                  {testimonial.image && (
+                    <img
+                      src={testimonial.image}
+                      alt={`Foto von ${testimonial.name}`}
+                      class="rounded-circle me-3"
+                      width="60"
+                      height="60"
+                      style="object-fit: cover;"
+                    />
+                  )}
+                  <div>
+                    <h4 class="h6 mb-0 fw-bold text-secondary-custom">{testimonial.name}</h4>
+                    {testimonial.location && (
+                      <p class="text-muted small mb-0">{testimonial.location}</p>
+                    )}
+                    {testimonial.date && (
+                      <p class="text-muted small mb-0">{testimonial.date}</p>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+          ) : (
+            <div class="card h-100 shadow-sm testimonial-card bg-white">
+              <div class="card-body p-4">
+                <h4 class="h5 mb-3 text-secondary-custom">{testimonial.name}</h4>
+                <div class="ratio ratio-16x9">
+                  <iframe
+                    src={testimonial.videoUrl}
+                    title={`Video-Erfahrungsbericht von ${testimonial.name}`}
+                    allowfullscreen
+                    loading="lazy"
+                    style="border-radius: 8px;"
+                  ></iframe>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .testimonial-card {
+    border: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-left: 4px solid #E78C43;
+  }
+
+  .testimonial-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15) !important;
+  }
+
+  .text-secondary-custom {
+    color: #2C3E50;
+  }
+
+  .fade-in {
+    animation: fadeIn 0.6s ease-in;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
