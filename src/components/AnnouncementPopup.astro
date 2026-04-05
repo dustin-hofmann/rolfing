@@ -1,0 +1,165 @@
+---
+import { announcementPopupConfig } from '../config/announcementPopup';
+
+const cfg = announcementPopupConfig;
+---
+
+{cfg.enabled && (
+  <div
+    id="announcementPopup"
+    class="announcement-popup"
+    data-popup-id={cfg.id}
+    data-start-at={cfg.startAt}
+    data-end-at={cfg.endAt}
+    data-show-once={String(cfg.showOncePerId)}
+    aria-hidden="true"
+  >
+    <div class="announcement-popup__backdrop" data-popup-close="true"></div>
+
+    <div class="announcement-popup__dialog" role="dialog" aria-modal="true" aria-labelledby="announcementPopupTitle">
+      <button class="announcement-popup__close" id="announcementPopupClose" aria-label="Popup schliessen">&times;</button>
+      <h3 id="announcementPopupTitle" class="announcement-popup__title">{cfg.title}</h3>
+      {cfg.imageSrc && (
+        <img
+          class="announcement-popup__image"
+          src={cfg.imageSrc}
+          alt={cfg.imageAlt || cfg.title}
+          loading="lazy"
+          decoding="async"
+        />
+      )}
+      <p class="announcement-popup__text">{cfg.text}</p>
+      <button class="btn btn-primary-custom" id="announcementPopupButton">{cfg.buttonLabel}</button>
+    </div>
+  </div>
+)}
+
+<style>
+  .announcement-popup {
+    position: fixed;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    padding: 1rem;
+  }
+
+  .announcement-popup.is-open {
+    display: flex;
+  }
+
+  .announcement-popup__backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+  }
+
+  .announcement-popup__dialog {
+    position: relative;
+    width: min(95vw, 560px);
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+    padding: 1.5rem;
+    z-index: 1;
+    border-top: 6px solid var(--secondary);
+  }
+
+  .announcement-popup__title {
+    margin: 0 0 0.75rem 0;
+    color: var(--primary);
+  }
+
+  .announcement-popup__text {
+    margin-bottom: 1.25rem;
+  }
+
+  .announcement-popup__image {
+    display: block;
+    width: 100%;
+    max-height: 320px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+  }
+
+  .announcement-popup__close {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    border: none;
+    background: transparent;
+    font-size: 1.75rem;
+    line-height: 1;
+    color: #666;
+    cursor: pointer;
+  }
+
+  @media (max-width: 576px) {
+    .announcement-popup__dialog {
+      padding: 1.25rem;
+      border-radius: 12px;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const popup = document.getElementById('announcementPopup');
+    if (!popup) return;
+
+    const popupId = popup.getAttribute('data-popup-id') || 'default';
+    const startAt = popup.getAttribute('data-start-at') || '';
+    const endAt = popup.getAttribute('data-end-at') || '';
+    const showOnce = popup.getAttribute('data-show-once') === 'true';
+
+    const closeButton = document.getElementById('announcementPopupClose');
+    const confirmButton = document.getElementById('announcementPopupButton');
+
+    const dismissedKey = 'announcementPopupDismissed:' + popupId;
+    const now = new Date();
+    const startDate = startAt ? new Date(startAt) : null;
+    const endDate = endAt ? new Date(endAt) : null;
+
+    const isAfterStart = !startDate || !Number.isNaN(startDate.getTime()) && now >= startDate;
+    const isBeforeEnd = !endDate || !Number.isNaN(endDate.getTime()) && now <= endDate;
+
+    if (!isAfterStart || !isBeforeEnd) return;
+    if (showOnce && localStorage.getItem(dismissedKey) === 'true') return;
+
+    function closePopup() {
+      popup.classList.remove('is-open');
+      popup.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      if (showOnce) {
+        localStorage.setItem(dismissedKey, 'true');
+      }
+    }
+
+    popup.classList.add('is-open');
+    popup.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+
+    popup.addEventListener('click', function (event) {
+      const target = event.target;
+      if (target instanceof HTMLElement && target.dataset.popupClose === 'true') {
+        closePopup();
+      }
+    });
+
+    if (closeButton) {
+      closeButton.addEventListener('click', closePopup);
+    }
+
+    if (confirmButton) {
+      confirmButton.addEventListener('click', closePopup);
+    }
+
+    document.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape' && popup.classList.contains('is-open')) {
+        closePopup();
+      }
+    });
+  });
+</script>
