@@ -56,4 +56,5 @@ Required GitHub secrets:
 - `FTP_SERVER`
 - `FTP_USERNAME`
 - `FTP_PASSWORD`
-- `FTP_SERVER_DIR` such as `/w0219c00/rolfing-bochum.de/`
+
+The workflow uploads directly to the FTP root (`/`).
