@@ -11,8 +11,6 @@ permissions:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    env:
-      SFTP_HOST: ${{ secrets.SFTP_HOST || '' }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -47,19 +45,8 @@ jobs:
             exit 1
           fi
 
-      - name: Upload dist via SFTP (if configured)
-        if: ${{ env.SFTP_HOST != '' }}
-        uses: appleboy/scp-action@v0.1.8
-        with:
-          host: ${{ env.SFTP_HOST }}
-          username: ${{ secrets.SFTP_USERNAME }}
-          # Prefer private key auth (set SFTP_PRIVATE_KEY in repo secrets).
-          # The action accepts either `key` or `password`.
-          key: ${{ secrets.SFTP_PRIVATE_KEY || '' }}
-          password: ${{ secrets.SFTP_PASSWORD || '' }}
-          port: ${{ secrets.SFTP_PORT || '22' }}
-          source: "./dist/*"
-          target: "/"
+      # SFTP fallback removed to avoid dependency on external action versions.
+      # If you need SFTP later, we can add a small script-based SFTP/SSH upload step.
 
       - name: Upload dist to All-Inkl via lftp (robust FTP)
         if: ${{ env.SFTP_HOST == '' }}
