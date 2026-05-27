@@ -57,4 +57,4 @@ Required GitHub secrets:
 - `FTP_USERNAME`
 - `FTP_PASSWORD`
 
-The workflow uploads directly to the public domain webroot: `/www/htdocs/w0219c00/rolfing-bochum.de/`.
+The workflow uploads directly to the FTP root (`/`).
