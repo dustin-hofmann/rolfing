@@ -11,6 +11,8 @@ permissions:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    env:
+      SFTP_HOST: ${{ secrets.SFTP_HOST || '' }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -46,10 +48,10 @@ jobs:
           fi
 
       - name: Upload dist via SFTP (if configured)
-        if: ${{ secrets.SFTP_HOST != '' }}
+        if: ${{ env.SFTP_HOST != '' }}
         uses: appleboy/scp-action@v0.1.8
         with:
-          host: ${{ secrets.SFTP_HOST }}
+          host: ${{ env.SFTP_HOST }}
           username: ${{ secrets.SFTP_USERNAME }}
           # Prefer private key auth (set SFTP_PRIVATE_KEY in repo secrets).
           # The action accepts either `key` or `password`.
@@ -59,17 +61,24 @@ jobs:
           source: "./dist/*"
           target: "/"
 
-      - name: Upload dist to All-Inkl (FTP fallback)
-        if: ${{ secrets.SFTP_HOST == '' }}
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.6
-        with:
-          server: ${{ secrets.FTP_SERVER || vars.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME || vars.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD || vars.FTP_PASSWORD }}
-          protocol: ftp
-          port: 21
-          local-dir: ./dist/
-          server-dir: /
-          # Use a longer control socket timeout to reduce "Timeout (control socket)" errors
-          timeout: 120
-          log-level: debug
+      - name: Upload dist to All-Inkl via lftp (robust FTP)
+        if: ${{ env.SFTP_HOST == '' }}
+        shell: bash
+        env:
+          FTP_HOST: ${{ secrets.FTP_SERVER || vars.FTP_SERVER }}
+          FTP_USER: ${{ secrets.FTP_USERNAME || vars.FTP_USERNAME }}
+          FTP_PASS: ${{ secrets.FTP_PASSWORD || vars.FTP_PASSWORD }}
+        run: |
+          set -euo pipefail
+          echo "Installing lftp..."
+          sudo apt-get update -y
+          sudo apt-get install -y lftp
+
+          echo "Starting lftp mirror upload to $FTP_HOST"
+          # Mirror local ./dist to remote / (adjust remote target if needed)
+          # Options:
+          #   --parallel=2        -> two simultaneous transfers
+          #   --delete            -> remove remote files not present locally
+          #   --verbose           -> show transfer details
+          # lftp settings: passive mode on, increase retries and timeouts
+          lftp -u "$FTP_USER","$FTP_PASS" "ftp://$FTP_HOST" -e "set ftp:passive-mode on; set net:max-retries 5; set net:reconnect-interval-base 5; set net:timeout 30; mirror -R --parallel=2 --delete --verbose ./dist /; quit"
