@@ -54,3 +54,28 @@ jobs:
           protocol: ftps
           local-dir: ./dist/
           server-dir: /
+          # Improve reliability for flaky FTP servers / NAT/firewall setups
+          # These inputs are best-effort: the action will use supported options.
+          passive: true         # use PASV mode for data connections
+          port: 21              # explicit FTPS typically uses 21 (explicit TLS)
+          parallel: 1           # reduce parallel transfers which some servers reject
+          timeout: 120          # increase per-transfer timeout (seconds)
+
+      # If your provider supports SFTP (SSH) instead of FTP/FTPS it's often
+      # more reliable. Example fallback job (disabled by default):
+      #
+      # deploy_sftp:
+      #   runs-on: ubuntu-latest
+      #   needs: [deploy]
+      #   if: ${{ secrets.SFTP_HOST != '' }}
+      #   steps:
+      #     - uses: actions/checkout@v4
+      #     - name: Upload via SFTP (fallback)
+      #       uses: appleboy/scp-action@v0.1.8
+      #       with:
+      #         host: ${{ secrets.SFTP_HOST }}
+      #         username: ${{ secrets.SFTP_USERNAME }}
+      #         password: ${{ secrets.SFTP_PASSWORD }}
+      #         port: ${{ secrets.SFTP_PORT || '22' }}
+      #         source: "./dist/*"
+      #         target: "/path/on/server/"
