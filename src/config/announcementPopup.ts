@@ -4,7 +4,7 @@ export const announcementPopupConfig = {
   title: '',
   text: '',
   // Optionales Bild im Popup, z. B. /images/popup/aktion.webp
-  imageSrc: 'images/popup/ostern.webp',
+  imageSrc: '/images/popup/ostern.webp',
   imageAlt: 'Aktionsbild',
   buttonLabel: 'Verstanden',
   // ISO-Format mit Zeitzone, z. B. 2026-04-05T00:00:00+02:00

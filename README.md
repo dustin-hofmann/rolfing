@@ -57,4 +57,4 @@ Required GitHub secrets:
 - `FTP_USERNAME`
 - `FTP_PASSWORD`
 
-The workflow uploads directly to the FTP root (`/`).
+The workflow uploads directly to `/f0185888/images/`.
