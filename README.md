@@ -46,3 +46,14 @@ All commands are run from the root of the project, from a terminal:
 ## 👀 Want to learn more?
 
 Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+
+## Deployment to All-Inkl
+
+The repository includes a GitHub Actions workflow that builds the Astro site and uploads the generated `dist/` folder to All-Inkl via FTP/FTPS.
+
+Required GitHub secrets:
+
+- `FTP_SERVER`
+- `FTP_USERNAME`
+- `FTP_PASSWORD`
+- `FTP_SERVER_DIR` such as `/w0219c00/rolfing-bochum.de/`
