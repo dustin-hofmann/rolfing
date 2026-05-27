@@ -53,4 +53,4 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD || vars.FTP_PASSWORD }}
           protocol: ftps
           local-dir: ./dist/
-          server-dir: /
+          server-dir: /www/htdocs/w0219c00/rolfing-bochum.de/
