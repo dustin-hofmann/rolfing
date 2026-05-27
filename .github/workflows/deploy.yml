@@ -45,37 +45,31 @@ jobs:
             exit 1
           fi
 
-      - name: Upload dist to All-Inkl
+      - name: Upload dist via SFTP (if configured)
+        if: ${{ secrets.SFTP_HOST != '' }}
+        uses: appleboy/scp-action@v0.1.8
+        with:
+          host: ${{ secrets.SFTP_HOST }}
+          username: ${{ secrets.SFTP_USERNAME }}
+          # Prefer private key auth (set SFTP_PRIVATE_KEY in repo secrets).
+          # The action accepts either `key` or `password`.
+          key: ${{ secrets.SFTP_PRIVATE_KEY || '' }}
+          password: ${{ secrets.SFTP_PASSWORD || '' }}
+          port: ${{ secrets.SFTP_PORT || '22' }}
+          source: "./dist/*"
+          target: "/"
+
+      - name: Upload dist to All-Inkl (FTP fallback)
+        if: ${{ secrets.SFTP_HOST == '' }}
         uses: SamKirkland/FTP-Deploy-Action@v4.3.6
         with:
           server: ${{ secrets.FTP_SERVER || vars.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME || vars.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD || vars.FTP_PASSWORD }}
-          protocol: ftps
+          protocol: ftp
+          port: 21
           local-dir: ./dist/
           server-dir: /
-          # Improve reliability for flaky FTP servers / NAT/firewall setups
-          # These inputs are best-effort: the action will use supported options.
-          passive: true         # use PASV mode for data connections
-          port: 21              # explicit FTPS typically uses 21 (explicit TLS)
-          parallel: 1           # reduce parallel transfers which some servers reject
-          timeout: 120          # increase per-transfer timeout (seconds)
-
-      # If your provider supports SFTP (SSH) instead of FTP/FTPS it's often
-      # more reliable. Example fallback job (disabled by default):
-      #
-      # deploy_sftp:
-      #   runs-on: ubuntu-latest
-      #   needs: [deploy]
-      #   if: ${{ secrets.SFTP_HOST != '' }}
-      #   steps:
-      #     - uses: actions/checkout@v4
-      #     - name: Upload via SFTP (fallback)
-      #       uses: appleboy/scp-action@v0.1.8
-      #       with:
-      #         host: ${{ secrets.SFTP_HOST }}
-      #         username: ${{ secrets.SFTP_USERNAME }}
-      #         password: ${{ secrets.SFTP_PASSWORD }}
-      #         port: ${{ secrets.SFTP_PORT || '22' }}
-      #         source: "./dist/*"
-      #         target: "/path/on/server/"
+          # Use a longer control socket timeout to reduce "Timeout (control socket)" errors
+          timeout: 120
+          log-level: debug
